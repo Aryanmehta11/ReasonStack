@@ -4,8 +4,15 @@ from crewai import Agent,Task,Crew,LLM
 from crewai.tools import BaseTool
 from google import genai
 from tavily import TavilyClient
+from langsmith import traceable
 
 load_dotenv()
+
+os.environ["LANGSMITH_TRACING"]="true"
+os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
+os.environ["LANGCHAIN_PROJECT"] = "Research Agent"
+os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+
 
 # client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
@@ -175,12 +182,16 @@ review_task = Task(
 # 🚀 CREW
 # -------------------------------
 
-crew = Crew(
-    agents=[researcher, critic,writer,reviewer],
-    tasks=[research_task, critic_task, write_task,review_task],
-    verbose=True
-)
-result = crew.kickoff()
+@traceable(name="Research Agent Pipeline") 
+def run_pipeline():
+    crew = Crew(
+        agents=[researcher, critic,writer,reviewer],
+        tasks=[research_task, critic_task, write_task,review_task],
+        verbose=True
+    )
+    result=crew.kickoff()
+    return result
+result = run_pipeline()
 print("\nFinal Output:\n", result)
 print("="*50)
 print(result)
