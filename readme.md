@@ -1,167 +1,178 @@
-# 🤖 AI Research Agent Pipeline
+# 🚀 CrewAI Multi-Agent Research System
 
-An intelligent multi-agent AI system built using CrewAI + Gemini + Tavily that performs deep research, critiques it, simplifies it, and delivers a polished beginner-friendly explanation.
-
----
-
-## 🚀 Overview
-
-This project implements an agentic workflow where multiple AI agents collaborate to:
-
-1. Research a topic using real-time web search  
-2. Critically evaluate the research quality  
-3. Convert it into a simple explanation  
-4. Review and polish the final output  
-
-All powered by Gemini LLM and CrewAI orchestration.
+A **production-ready AI agent system** built using **CrewAI, FastAPI, and Gemini**, capable of performing structured research using multiple collaborating agents.
 
 ---
 
-## 🧩 Architecture
+## 🌍 Live Demo
 
-The system consists of 4 AI agents:
-
-- Researcher → Gathers information using Tavily search  
-- Critic → Validates and improves research quality  
-- Writer → Simplifies the content for beginners  
-- Reviewer → Polishes the final output  
+https://crew-ai-agent.onrender.com/docs
 
 ---
 
-## ⚙️ Tech Stack
+## 🧠 Overview
 
-- CrewAI → Multi-agent orchestration  
-- Google Gemini (gemini-2.5-flash) → LLM  
-- Tavily API → Real-time web search  
-- LangSmith → Tracing and observability  
-- Python → Core implementation  
+This project implements a **multi-agent AI pipeline** where different agents collaborate to:
+
+* Research a topic
+* Critically evaluate it
+* Simplify it for understanding
+* Refine the final output
+
+The system is exposed via a **FastAPI backend** and deployed on **Render**.
+
+---
+
+## ⚙️ Architecture
+
+FastAPI → CrewAI → Agents → Tools → LLM (Gemini)
+
+---
+
+## 🤖 Agents
+
+The system consists of four specialized agents:
+
+* **Researcher** → Gathers detailed information
+* **Critic** → Reviews and improves accuracy
+* **Writer** → Simplifies the explanation
+* **Reviewer** → Polishes final output
+
+---
+
+## 🛠️ Features
+
+* ✅ Multi-agent AI system using CrewAI
+* ✅ Tool-augmented reasoning with Tavily Search API
+* ✅ Gemini LLM integration
+* ✅ FastAPI backend with async endpoints
+* ✅ LangSmith tracing support
+* ✅ Production deployment on Render
+* ✅ Environment-based configuration
+
+---
+
+## 📡 API Endpoint
+
+### POST `/research`
+
+#### Request:
+
+```json
+{
+  "topic": "Artificial Intelligence"
+}
+```
+
+#### Response:
+
+```json
+{
+  "topic": "Artificial Intelligence",
+  "result": "Detailed multi-agent generated output..."
+}
+```
+
+---
+
+## 🧪 Local Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/crew-ai-agent.git
+cd crew-ai-agent
+```
+
+### 2. Create virtual environment
+
+```bash
+python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Setup environment variables
+
+Create `.env` file:
+
+```env
+GEMINI_API_KEY=your_key
+TAVILY_API_KEY=your_key
+LANGCHAIN_API_KEY=your_key
+```
+
+---
+
+### 5. Run the server
+
+```bash
+uvicorn main:app --reload
+```
+
+---
+
+## 🐳 Deployment (Render)
+
+* Python 3.10 runtime
+* Build Command:
+
+```bash
+pip install -r requirements.txt
+```
+
+* Start Command:
+
+```bash
+uvicorn main:app --host 0.0.0.0 --port 10000
+```
 
 ---
 
 ## 📁 Project Structure
 
+```bash
 .
-├── main.py
-├── .env
+├── main.py          # FastAPI entry point
+├── pipeline.py      # CrewAI orchestration
+├── agents.py        # Agent definitions
+├── tools.py         # External tools (Tavily)
 ├── requirements.txt
+├── runtime.txt
+├── .env.example
 └── README.md
+```
 
 ---
 
-## 🔑 Environment Variables
+## 🧠 Key Learnings
 
-Create a `.env` file in the root directory:
-
-GEMINI_API_KEY=your_gemini_api_key  
-TAVILY_API_KEY=your_tavily_api_key  
-LANGCHAIN_API_KEY=your_langsmith_api_key  
-
----
-
-## 🛠️ Installation
-
-# Clone the repository
-git clone https://github.com/your-username/research-agent.git
-
-# Navigate to project
-cd research-agent
-
-# Create virtual environment
-python -m venv venv
-
-# Activate environment (Windows)
-venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
+* Multi-agent orchestration using CrewAI
+* Tool integration for real-time data
+* Managing dependencies in cloud deployments
+* Handling Python runtime compatibility issues
+* Observability using LangSmith
 
 ---
 
-## ▶️ Usage
+## 🚀 Future Improvements
 
-Run the project:
-
-python main.py
-
-You will be prompted:
-
-Enter topic to research:
-
-Example:
-
-Enter topic to research: Artificial Intelligence
+* Streaming responses
+* Frontend (React UI)
+* RAG integration (vector DB)
+* User authentication
+* Persistent memory
 
 ---
 
-## 🔄 Workflow
+## 💬 Interview Talking Point
 
-1. User enters a topic  
-2. Researcher uses search_tool (Tavily) to gather data  
-3. Critic ensures completeness and correctness  
-4. Writer simplifies the explanation  
-5. Reviewer refines and delivers final output  
+> Built a production-ready multi-agent AI system using CrewAI with tool integration, exposed via FastAPI and deployed on Render, solving real-world dependency and runtime challenges.
 
 ---
 
-## 🧠 Features
-
-- Real-time web search integration  
-- Multi-agent collaboration  
-- Self-correcting research pipeline  
-- Beginner-friendly explanations  
-- Observability via LangSmith tracing  
-
----
-
-## 🔍 Example Output
-
-Artificial Intelligence (AI) is a technology that allows machines to think and learn like humans.
-
-Example:
-Virtual assistants like Siri and Alexa use AI.
-
-Benefits:
-- Automation
-- Efficiency
-
-Challenges:
-- Bias
-- Job displacement
-
----
-
-## 📌 Key Components
-
-- Custom Tool (SearchTool) → Uses Tavily API for search  
-- Agents → Defined using CrewAI  
-- Tasks → Structured pipeline with dependencies  
-- Crew Execution → Orchestrates full workflow  
-
----
-
-## 🧪 Future Improvements
-
-- Add memory to agents  
-- Add UI (React / Next.js frontend)  
-- Support multiple LLM providers  
-- Store research history  
-- Add citations and sources formatting  
-
----
-
-## 🤝 Contributing
-
-Feel free to fork this repo and submit pull requests!
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-## 💡 Author
-
-Aryan Mehta  
-Building toward becoming a Top 1% Software Engineer 🚀
