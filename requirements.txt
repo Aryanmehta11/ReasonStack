@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+crewai
+tavily-python
+python-dotenv
+langsmith
+google-generativeai
