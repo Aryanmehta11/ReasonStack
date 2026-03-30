@@ -1,6 +1,6 @@
 fastapi
 uvicorn
-crewai
+crewai[google-genai]
 tavily-python
 python-dotenv
 langsmith
