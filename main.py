@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 load_dotenv()
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from pipeline import run_pipeline
 
 app = FastAPI()
@@ -17,3 +17,8 @@ async def research(topic: str):
         "topic": topic,
         "result": str(result)
     }
+
+@app.head("/ping")
+def ping_head():
+    return Response(status_code=200)    
+    
