@@ -18,7 +18,7 @@ async def research(topic: str):
         "result": str(result)
     }
 
-@app.head("/health")
+@app.head("/ping")
 def ping_head():
     return Response(status_code=200)    
     
