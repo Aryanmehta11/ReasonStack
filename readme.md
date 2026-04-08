@@ -170,9 +170,5 @@ uvicorn main:app --host 0.0.0.0 --port 10000
 
 ---
 
-## 💬 Interview Talking Point
-
-> Built a production-ready multi-agent AI system using CrewAI with tool integration, exposed via FastAPI and deployed on Render, solving real-world dependency and runtime challenges.
-
 ---
 
